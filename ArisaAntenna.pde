@@ -9,7 +9,7 @@ void setup()
 	surface.setResizable( true );
 	surface.setTitle( "ありさアンテナ" );
 	// surface.setIcon( loadImage( "./arisa.png" ) );
-
+	smooth( 2 );
 	noStroke();
 
 	init();
@@ -27,25 +27,30 @@ void init()
 	btn2 = new SLibrary()
 	.setBounds( width / 2, height / 2, 300, 150 )
 	.setColor( #55CC55 )
-	.setCorner( 10 )
+	.setCorner( 10, 40, 40, 40 )
 	.setMode( CENTER )
 	.setHoverColor( #33AA33 )
+	.setText( "Button2" )
+	.setAlign( CENTER, CENTER )
+	.setSize( 16 )
 	;
 
 	lbl1 = new SLibrary()
-	.setPosition( width / 2, height / 2 )
-	.setSize( 16 )
+	.setPosition( 0, 0 )
+	.setSize( 32 )
+	.setLabelColor( #FF0000 )
 	.setText( "texxxxxxxxxxxxxxxxxxt" )
-	.setAlign( CENTER, CENTER )
+	.setAlign( LEFT, TOP )
 	;
 }
 
 void draw()
 {
-	background( #333333 );
-	mainBox.setPosition( width / 2, height / 2 ).drawBox();
-	btn2.setPosition( width / 2, height / 2 ).drawButton();
-	lbl1.setPosition( width / 2, height / 2 ).drawLabel();
+	background( 51 );
+	mainBox.drawBox();
+	btn2.drawButton().drawLabel();
+	lbl1.drawLabel();
+
 }
 
 class SLibrary
@@ -57,7 +62,7 @@ class SLibrary
 	int objWidth = width;
 	int objHeight = height;
 	int objMode = CORNER;
-	int objCorner = 0;
+	int objCorner[] = { 0, 0, 0, 0 };
 	color objColor = #FFFFFF;
 
 	// Label variable
@@ -74,6 +79,7 @@ class SLibrary
 	color hoverColor = #DDDDDD;
 	boolean isHover = false;
 	boolean isClicked = false;
+	int clickedButton;
 
 	// General method
 
@@ -112,7 +118,20 @@ class SLibrary
 
 	SLibrary setCorner( int r )
 	{
-		objCorner = r;
+		objCorner[0] = r;
+		objCorner[1] = r;
+		objCorner[2] = r;
+		objCorner[3] = r;
+
+		return( this );
+	}
+
+	SLibrary setCorner( int r1, int r2, int r3, int r4 )
+	{
+		objCorner[0] = r1;
+		objCorner[1] = r2;
+		objCorner[2] = r3;
+		objCorner[3] = r4;
 
 		return( this );
 	}
@@ -148,6 +167,13 @@ class SLibrary
 		return( this );
 	}
 
+	SLibrary setLabelColor( color c )
+	{
+		labelColor = c;
+
+		return( this );
+	}
+
 	SLibrary setIcon( PImage i )
 	{
 		labelIcon = i;
@@ -170,7 +196,7 @@ class SLibrary
 	{
 		fill( objColor );
 		rectMode( objMode );
-		rect( objX, objY, objWidth, objHeight, objCorner );
+		rect( objX, objY, objWidth, objHeight, objCorner[0], objCorner[1], objCorner[2], objCorner[3] );
 
 		return( this );
 	}
@@ -215,7 +241,7 @@ class SLibrary
 		}
 
 		rectMode( objMode );
-		rect( objX, objY, objWidth, objHeight, objCorner );
+		rect( objX, objY, objWidth, objHeight, objCorner[0], objCorner[1], objCorner[2], objCorner[3] );
 
 		return( this );
 	}
