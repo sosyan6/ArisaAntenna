@@ -25,9 +25,9 @@ void init()
 	;
 
 	btn2 = new SLibrary()
-	.setBounds( width / 2, height / 2, 300, 150 )
+	.setBounds( width / 2, height / 2, 150, 150 )
 	.setColor( #55CC55 )
-	.setCorner( 10, 40, 40, 40 )
+	.setCorner( 150 )
 	.setMode( CENTER )
 	.setHoverColor( #33AA33 )
 	.setText( "Button2" )
@@ -51,6 +51,13 @@ void draw()
 	btn2.drawButton().drawLabel();
 	lbl1.drawLabel();
 
+	if( btn2.isHold ){
+		btn2.setHoverColor( #FF0000 )
+		.setText( "aaaaaaaaaaaaaaaa" );
+	}else{
+		btn2.setHoverColor( btn2.objColor + #DDDDDD )
+		.setText( "bbbbbbbbbbbbbbbbbb" );
+	}
 }
 
 class SLibrary
@@ -78,6 +85,7 @@ class SLibrary
 
 	color hoverColor = #DDDDDD;
 	boolean isHover = false;
+	boolean isHold = false;
 	boolean isClicked = false;
 	int clickedButton;
 
@@ -122,6 +130,16 @@ class SLibrary
 		objCorner[1] = r;
 		objCorner[2] = r;
 		objCorner[3] = r;
+
+		return( this );
+	}
+
+	SLibrary setCorner( int r1, int r2 )
+	{
+		objCorner[0] = r1;
+		objCorner[1] = r1;
+		objCorner[2] = r2;
+		objCorner[3] = r2;
 
 		return( this );
 	}
@@ -230,11 +248,11 @@ class SLibrary
 			isHover = false;
 		}
 
-		isClicked = false;
+		isHold = false;
 		if( isHover ){
 			fill( hoverColor );
 			if( mousePressed ){
-				isClicked = true;
+				isHold = true;
 			}
 		}else{
 			fill( objColor );
