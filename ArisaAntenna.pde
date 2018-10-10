@@ -1,4 +1,4 @@
-﻿// import processing.net.*;
+// import processing.net.*;
 SLibrary mainBox;
 SLibrary btn2;
 SLibrary lbl1;
@@ -52,16 +52,15 @@ void draw()
 	lbl1.drawLabel();
 }
 
-boolean flag = false;
 void mouseClicked()
 {
 	if( btn2.isHover ){
-		if( flag ){
+		if( btn2.objFlag ){
 			btn2.setColor( #55CC55 ).setHoverColor( #33AA33 );
 		}else{
 			btn2.setColor( #FF0000 ).setHoverColor( #BB0000 );
 		}
-		flag = !flag;
+		btn2.switchFlag();
 		println( btn2.hoverColor );
 	}
 }

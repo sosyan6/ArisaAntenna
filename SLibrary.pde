@@ -9,6 +9,7 @@ class SLibrary
 	int objMode = CORNER;
 	int objCorner[] = { 0, 0, 0, 0 };
 	color objColor = #FFFFFF;
+	boolean objFlag = false;
 
 	// Label variable
 
@@ -96,6 +97,20 @@ class SLibrary
 	SLibrary setColor( color c )
 	{
 		objColor = c;
+
+		return( this );
+	}
+
+	SLibrary switchFlag()
+	{
+		objFlag = !objFlag;
+
+		return( this );
+	}
+
+	SLibrary switchFlag( boolean b )
+	{
+		objFlag = b;
 
 		return( this );
 	}
