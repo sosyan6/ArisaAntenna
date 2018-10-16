@@ -29,6 +29,8 @@ class SLibrary
 	boolean isClicked = false;
 	int clickedButton;
 
+	// TextField variable
+
 	// General method
 
 	SLibrary setPosition( int x, int y )
@@ -224,6 +226,20 @@ class SLibrary
 
 		rectMode( objMode );
 		rect( objX, objY, objWidth, objHeight, objCorner[0], objCorner[1], objCorner[2], objCorner[3] );
+
+		return( this );
+	}
+
+	SLibrary drawTextField()
+	{
+		fill( objColor );
+		rectMode( objMode );
+		rect( objX, objY, objWidth, objHeight, objCorner[0], objCorner[1], objCorner[2], objCorner[3] );
+
+		textAlign( labelAlign, labelVAlign );
+		fill( labelColor );
+		textSize( labelSize );
+		text( labelText, objX, objY );
 
 		return( this );
 	}
